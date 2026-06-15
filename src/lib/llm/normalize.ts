@@ -1,7 +1,7 @@
 import type { FormSchema } from '../schema/types';
 import { compileJsonSchema } from '../schema/compile-json-schema';
 import { compileZodSchema } from '../schema/compile-zod';
-import { normalizePhone } from '../phone';
+import { coercePhoneFields } from '../schema/coerce';
 import { buildNormalizeSystemPrompt, buildRepairPrompt } from './prompt';
 import type { LlmProvider } from './types';
 
@@ -33,18 +33,6 @@ function asObject(value: unknown): Record<string, unknown> {
     : {};
 }
 
-/** Normalize phone-typed fields to E.164 before validation (LLM returns them as written). */
-function coercePhones(schema: FormSchema, data: Record<string, unknown>): void {
-  for (const field of schema.fields) {
-    if (field.type !== 'phone') continue;
-    const value = data[field.key];
-    if (typeof value === 'string' && value.trim()) {
-      const normalized = normalizePhone(value);
-      if (normalized) data[field.key] = normalized;
-    }
-  }
-}
-
 /**
  * Turn a messy note into a validated lead record. Returns a partial draft with
  * flagged issues rather than throwing, because a human confirms before saving —
@@ -68,8 +56,7 @@ export async function normalizeLead(args: NormalizeArgs): Promise<NormalizeResul
       signal,
     });
 
-    data = asObject(result.raw);
-    coercePhones(schema, data);
+    data = coercePhoneFields(schema, asObject(result.raw));
 
     const parsed = validator.safeParse(data);
     if (parsed.success) {

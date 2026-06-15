@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { use } from 'react';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { Link } from '@/i18n/navigation';
 
 const FEATURE_KEYS = ['capture', 'send', 'team'] as const;
 
@@ -48,12 +49,12 @@ export default function HomePage({
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <button
-              type="button"
+            <Link
+              href="/leads/new"
               className="rounded-xl bg-primary px-5 py-3 text-base font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary-hover"
             >
               {t('ctaPrimary')}
-            </button>
+            </Link>
             <a
               href="https://github.com/okaditya84/CRM-Agent/blob/main/docs/SETUP.md"
               className="rounded-xl border border-border bg-surface px-5 py-3 text-base font-semibold text-foreground transition-colors hover:bg-surface-2"
