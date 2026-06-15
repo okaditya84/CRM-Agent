@@ -59,5 +59,18 @@
     "savedTitle": "Lead saved",
     "addAnother": "Add another",
     "nextStep": "Next: pick photos to send on WhatsApp (coming soon)."
+  },
+  "catalog": {
+    "title": "Product catalog",
+    "subtitle": "Upload your saree and dress-material designs. Select photos here to send to a customer on WhatsApp.",
+    "uploadLabel": "Add a photo",
+    "choose": "Choose image",
+    "caption": "Caption — price or design name (optional)",
+    "tags": "Tags, comma-separated (optional)",
+    "upload": "Upload",
+    "uploading": "Uploading…",
+    "empty": "No photos yet — upload your first design above.",
+    "selected": "{count} selected",
+    "sendSoon": "Sending selected photos to WhatsApp arrives in the next update."
   }
 }
