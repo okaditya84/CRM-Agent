@@ -9,6 +9,9 @@ import {
 } from './storage/sheets/sheets-client';
 import { createLlmProvider } from './llm/factory';
 import type { LlmProvider, LlmProviderKind } from './llm/types';
+import type { MediaStore } from './media/types';
+import { LocalMediaStore } from './media/local';
+import { R2MediaStore } from './media/r2';
 
 /**
  * Runtime wiring. Resolves the active storage, LLM, and field schema from
@@ -20,6 +23,7 @@ import type { LlmProvider, LlmProviderKind } from './llm/types';
 let _storage: StorageProvider | null = null;
 let _llm: LlmProvider | null | undefined; // undefined = not yet resolved
 let _schema: FormSchema | null = null;
+let _media: MediaStore | null = null;
 
 function defaultModelFor(provider: LlmProviderKind): string {
   switch (provider) {
@@ -63,9 +67,31 @@ function buildLlmFromEnv(): LlmProvider | null {
   });
 }
 
+function buildMediaFromEnv(): MediaStore {
+  const accountId = process.env.R2_ACCOUNT_ID;
+  const bucket = process.env.R2_BUCKET;
+  const accessKeyId = process.env.R2_ACCESS_KEY_ID;
+  const secretAccessKey = process.env.R2_SECRET_ACCESS_KEY;
+  if (accountId && bucket && accessKeyId && secretAccessKey) {
+    return new R2MediaStore({
+      accountId,
+      bucket,
+      accessKeyId,
+      secretAccessKey,
+      publicBaseUrl: process.env.R2_PUBLIC_BASE_URL,
+    });
+  }
+  return new LocalMediaStore();
+}
+
 export function getStorage(): StorageProvider {
   if (!_storage) _storage = buildStorageFromEnv();
   return _storage;
+}
+
+export function getMediaStore(): MediaStore {
+  if (!_media) _media = buildMediaFromEnv();
+  return _media;
 }
 
 export function getLlmProvider(): LlmProvider | null {
@@ -82,4 +108,7 @@ export function setLlmProvider(p: LlmProvider | null): void {
 }
 export function setActiveSchema(s: FormSchema | null): void {
   _schema = s;
+}
+export function setMediaStore(m: MediaStore | null): void {
+  _media = m;
 }
