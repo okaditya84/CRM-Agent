@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import type { FormSchema } from '@/lib/schema/types';
 import { SchemaForm } from '@/components/form/SchemaForm';
+import { SendPanel } from '@/components/leads/SendPanel';
 import { cn } from '@/lib/utils';
 
 type SaveState = 'idle' | 'saving' | 'saved' | 'error';
@@ -21,6 +22,7 @@ export function NewLeadClient({ schema }: { schema: FormSchema }) {
 
   const [saveState, setSaveState] = useState<SaveState>('idle');
   const [saveError, setSaveError] = useState<string | null>(null);
+  const [savedLeadId, setSavedLeadId] = useState<string | null>(null);
 
   async function structureWithAi() {
     if (!aiText.trim()) return;
@@ -59,6 +61,8 @@ export function NewLeadClient({ schema }: { schema: FormSchema }) {
         body: JSON.stringify({ data: formValues, source: usedAi ? 'llm_normalized' : 'manual' }),
       });
       if (res.status === 201) {
+        const body = (await res.json().catch(() => ({}))) as { lead?: { id?: string } };
+        setSavedLeadId(body.lead?.id ?? null);
         setSaveState('saved');
         return;
       }
@@ -78,20 +82,23 @@ export function NewLeadClient({ schema }: { schema: FormSchema }) {
     setAiMessage(null);
     setSaveState('idle');
     setSaveError(null);
+    setSavedLeadId(null);
   }
 
   if (saveState === 'saved') {
     return (
-      <div className="rounded-xl border border-border bg-surface p-8 text-center shadow-sm">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary-soft text-2xl text-success">
-          ✓
+      <div className="rounded-xl border border-border bg-surface p-6 shadow-sm">
+        <div className="text-center">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary-soft text-2xl text-success">
+            ✓
+          </div>
+          <h2 className="mt-4 text-xl font-semibold">{t('savedTitle')}</h2>
         </div>
-        <h2 className="mt-4 text-xl font-semibold">{t('savedTitle')}</h2>
-        <p className="mt-2 text-muted">{t('nextStep')}</p>
+        {savedLeadId && <SendPanel leadId={savedLeadId} />}
         <button
           type="button"
           onClick={addAnother}
-          className="mt-5 rounded-xl bg-primary px-5 py-2.5 font-semibold text-primary-foreground hover:bg-primary-hover"
+          className="mt-6 w-full rounded-xl border border-border bg-surface-2 px-5 py-2.5 font-semibold text-foreground hover:bg-surface"
         >
           {t('addAnother')}
         </button>

@@ -72,5 +72,16 @@
     "empty": "No photos yet — upload your first design above.",
     "selected": "{count} selected",
     "sendSoon": "Sending selected photos to WhatsApp arrives in the next update."
+  },
+  "send": {
+    "title": "Send designs on WhatsApp",
+    "message": "Message (optional)",
+    "button": "Send on WhatsApp",
+    "sending": "Sending…",
+    "noPhotos": "Upload photos in the Catalog first.",
+    "notConfigured": "Connect WhatsApp in Settings to send.",
+    "result": "Sent {sent} of {total} photo(s).",
+    "selectHint": "Pick the designs to send.",
+    "windowNote": "If the customer hasn't messaged you in 24h, WhatsApp may block free sends — ask them to message you (or scan your QR) first."
   }
 }
