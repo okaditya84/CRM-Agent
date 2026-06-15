@@ -20,6 +20,12 @@ export {
   verifyWebhookChallenge,
 } from './cloud/signature';
 export { parseWebhook } from './cloud/parse-webhook';
+export { MetaCloudAdapter, type MetaCloudConfig } from './cloud/meta-cloud-adapter';
+export {
+  setWebhookEventHandler,
+  dispatchWebhookEvents,
+  type WebhookEventHandler,
+} from './webhook-handler';
 export {
   SERVICE_WINDOW_MS,
   FREE_ENTRY_WINDOW_MS,
