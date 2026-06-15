@@ -21,3 +21,11 @@ export type {
 } from './types';
 export { newId } from './ids';
 export { InMemoryStorageProvider } from './in-memory-adapter';
+export {
+  GoogleSheetsAdapter,
+  GoogleSheetsApiClient,
+  FakeSheetsClient,
+  TokenBucket,
+  type SheetsClient,
+  type ServiceAccountCredentials,
+} from './sheets';
