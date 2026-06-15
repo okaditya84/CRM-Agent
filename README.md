@@ -78,8 +78,13 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full flow and the cos
 
 ## Project status
 
-🚧 **Early build — Phase 1 (core loop).** See [`docs/ROADMAP.md`](docs/ROADMAP.md) for what's in each
-phase and what's done so far.
+✅ **Phase 1 (core loop) functionally complete** — capture (form + AI) → save (Sheets-ready,
+idempotent) → photo catalog → send on WhatsApp → control via Event Mode + QR. 116 tests,
+runtime-verified. Configure the keys in [`docs/SETUP.md`](docs/SETUP.md) and the loop runs on real
+data. Next: the AI bot on inbound + team inbox + human takeover (Phase 2). See
+[`docs/ROADMAP.md`](docs/ROADMAP.md).
+
+Runs locally with **zero credentials** (in-memory store, no LLM/WhatsApp): `npm install && npm run dev`.
 
 ## What you'll need to configure
 

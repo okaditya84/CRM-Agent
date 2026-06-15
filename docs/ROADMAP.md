@@ -5,25 +5,31 @@ each feature ships as its own branch → PR → merge.
 
 ---
 
-## Phase 1 — Working core loop (manual, owner-driven) 🚧 in progress
+## Phase 1 — Working core loop (manual, owner-driven) ✅ functionally complete
 
-The minimum that delivers value at the next fair, no autonomous bot yet.
+The core loop — capture → save → catalog → send on WhatsApp → control — is built and
+verified (116 tests, live smoke tests). Delivered across PRs #1–#11.
 
-- [ ] Project scaffold: Next.js (App Router) + TypeScript + Tailwind, runs with `next dev`
-- [ ] Multilingual shell: `next-intl`, English / Hindi / Gujarati, runtime language switch
-- [ ] Design system: clean, professional, accessible UI tokens (colors, type, spacing)
+- [x] Project scaffold: Next.js 16 (App Router) + TypeScript strict + Tailwind v4 (PR #1)
+- [x] Multilingual shell: `next-intl`, English / Hindi / Gujarati, runtime language switch (PR #1)
+- [x] Design system: clean, professional, accessible UI tokens (PR #1)
+- [x] Dynamic field schema → Zod / column-map / JSON-schema compilers (single source of truth) (PR #2)
+- [x] Lead capture form rendered from the schema, fully validated, multilingual labels (PR #8)
+- [x] LLM lead structuring: paste messy text → structured draft → human confirms → save (PR #7, #8)
+- [x] `StorageProvider` interface + in-memory + `GoogleSheetsAdapter` (upsert-by-phone, coalescing) (PR #3, #4)
+- [x] Product photo library: upload, tag (caption/price), thumbnail grid, multi-select (PR #9)
+- [x] `WhatsAppProvider` interface + Meta Cloud adapter (text/image/template, media upload) (PR #5, #6)
+- [x] Webhook receiver (always-on): verify signature → parse → dispatch → 200 (PR #6)
+- [x] Send selected photos within an open window (PR #10)
+- [x] Event Mode + global kill switch (PR #11)
+- [x] QR / `wa.me` generator (stall + website), accessible from the app (PR #11)
+
+Carried forward (Phase 1.5 / folded into Phase 2):
+
 - [ ] Admin auth (single user; signed-cookie session)
-- [ ] Dynamic field schema → Zod / column-map / JSON-schema compilers (single source of truth)
-- [ ] Lead capture form rendered from the schema, fully validated, multilingual labels
-- [ ] LLM lead structuring: paste messy text → structured draft → human confirms → save
-- [ ] `StorageProvider` interface + `GoogleSheetsAdapter` (service account, upsert-by-phone, coalescing)
-- [ ] Product photo library: upload, tag (SKU/price), thumbnail grid, multi-select
-- [ ] `WhatsAppProvider` interface + Meta Cloud adapter (send text/image/template, media upload)
-- [ ] Webhook receiver (always-on): verify signature → persist → enqueue → 200
-- [ ] Send selected photos within an open window; delivery/read status shown in UI
-- [ ] Event Mode + global kill switch + per-number pause flags wired in
-- [ ] QR / `wa.me` generator (stall + website), accessible from the app
-- [ ] In-app encrypted settings page with per-integration "Test connection"
+- [ ] In-app **encrypted** settings entry + per-integration "Test connection" (status panel shipped; secret entry pending)
+- [ ] Delivery/read status surfaced in the UI (status events are parsed; UI pending)
+- [ ] Per-conversation pause flag wired end-to-end (`isBotAllowed` accepts it; storage wiring pending)
 
 ## Phase 2 — AI bot, team inbox, human takeover
 
