@@ -12,6 +12,8 @@ import type { LlmProvider, LlmProviderKind } from './llm/types';
 import type { MediaStore } from './media/types';
 import { LocalMediaStore } from './media/local';
 import { R2MediaStore } from './media/r2';
+import type { WhatsAppProvider } from './whatsapp/provider';
+import { MetaCloudAdapter } from './whatsapp/cloud/meta-cloud-adapter';
 
 /**
  * Runtime wiring. Resolves the active storage, LLM, and field schema from
@@ -24,6 +26,7 @@ let _storage: StorageProvider | null = null;
 let _llm: LlmProvider | null | undefined; // undefined = not yet resolved
 let _schema: FormSchema | null = null;
 let _media: MediaStore | null = null;
+let _whatsapp: WhatsAppProvider | null | undefined;
 
 function defaultModelFor(provider: LlmProviderKind): string {
   switch (provider) {
@@ -94,6 +97,18 @@ export function getMediaStore(): MediaStore {
   return _media;
 }
 
+function buildWhatsAppFromEnv(): WhatsAppProvider | null {
+  const accessToken = process.env.WHATSAPP_ACCESS_TOKEN;
+  const phoneNumberId = process.env.WHATSAPP_PHONE_NUMBER_ID;
+  if (!accessToken || !phoneNumberId) return null;
+  return new MetaCloudAdapter({ accessToken, phoneNumberId });
+}
+
+export function getWhatsApp(): WhatsAppProvider | null {
+  if (_whatsapp === undefined) _whatsapp = buildWhatsAppFromEnv();
+  return _whatsapp;
+}
+
 export function getLlmProvider(): LlmProvider | null {
   if (_llm === undefined) _llm = buildLlmFromEnv();
   return _llm;
@@ -111,4 +126,7 @@ export function setActiveSchema(s: FormSchema | null): void {
 }
 export function setMediaStore(m: MediaStore | null): void {
   _media = m;
+}
+export function setWhatsApp(w: WhatsAppProvider | null): void {
+  _whatsapp = w;
 }
