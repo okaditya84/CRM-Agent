@@ -83,5 +83,35 @@
     "result": "Sent {sent} of {total} photo(s).",
     "selectHint": "Pick the designs to send.",
     "windowNote": "If the customer hasn't messaged you in 24h, WhatsApp may block free sends — ask them to message you (or scan your QR) first."
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Control the system and generate your stall QR code.",
+    "eventMode": {
+      "title": "Event Mode",
+      "desc": "Turn the whole system on for a fair, off when it's over. When off, messages are still received but the bot stays silent and nothing auto-sends.",
+      "on": "ON — bot active",
+      "off": "OFF — receiving only",
+      "halt": "Emergency stop — halt all automation now"
+    },
+    "qr": {
+      "title": "Your stall QR code",
+      "desc": "Print this for your stall and add it to your website. When a customer scans it, WhatsApp opens with a message to you — opening a free 24h window to send designs.",
+      "number": "Your WhatsApp number (with country code)",
+      "numberHint": "e.g. 919876543210",
+      "message": "Prefilled message",
+      "copy": "Copy link",
+      "copied": "Copied!"
+    },
+    "integrations": {
+      "title": "Integrations",
+      "whatsapp": "WhatsApp",
+      "llm": "AI (LLM)",
+      "sheets": "Google Sheets",
+      "media": "Durable photo storage",
+      "configured": "Connected",
+      "notConfigured": "Not connected",
+      "guide": "Setup guide"
+    }
   }
 }
