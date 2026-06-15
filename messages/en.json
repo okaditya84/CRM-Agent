@@ -1,0 +1,41 @@
+{
+  "app": {
+    "name": "Saral CRM",
+    "tagline": "Capture leads, send designs, and close on WhatsApp — in one tap."
+  },
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "hi": "हिंदी",
+    "gu": "ગુજરાતી"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "leads": "Leads",
+    "inbox": "Inbox",
+    "catalog": "Catalog",
+    "settings": "Settings"
+  },
+  "home": {
+    "eyebrow": "WhatsApp-first CRM for textile fairs",
+    "title": "From a jotted phone number to an organized, automated WhatsApp conversation.",
+    "subtitle": "Capture a customer at the fair in seconds, pick the saree and dress-material designs they liked, and let the conversation continue on WhatsApp — automatically, in their own language, with your team always in sync.",
+    "ctaPrimary": "Add a lead",
+    "ctaSecondary": "Setup guide",
+    "phaseBadge": "Phase 1 · Core loop in progress",
+    "features": {
+      "capture": {
+        "title": "Effortless capture",
+        "body": "Type or dictate a messy note in any language — the app structures it into a clean lead and saves it to your Google Sheet instantly."
+      },
+      "send": {
+        "title": "Pick & send designs",
+        "body": "Choose product photos from your library and send them over WhatsApp in the customer's own language — no copy-paste, no mess."
+      },
+      "team": {
+        "title": "Your team, in sync",
+        "body": "Every lead, note, and status update is shared. A salesperson can take over any chat from the bot at any moment."
+      }
+    }
+  }
+}

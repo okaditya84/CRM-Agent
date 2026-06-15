@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+/*
+ * Saral CRM design system.
+ * Semantic tokens are defined once here and consumed as Tailwind utilities
+ * (bg-surface, text-muted, etc.). Fonts cover Latin + Devanagari + Gujarati so
+ * the same text style renders correctly in English, Hindi, and Gujarati.
+ */
+@theme {
+  --color-bg: #faf9f7;
+  --color-surface: #ffffff;
+  --color-surface-2: #f5f4f1;
+  --color-foreground: #1c1917;
+  --color-muted: #78716c;
+  --color-border: #e7e5e4;
+
+  --color-primary: #6d28d9;
+  --color-primary-hover: #5b21b6;
+  --color-primary-foreground: #ffffff;
+  --color-primary-soft: #f3eefe;
+
+  --color-accent: #d97706;
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+  --color-ring: #8b5cf6;
+
+  --font-sans: var(--font-noto-sans), var(--font-noto-deva),
+    var(--font-noto-gujarati), ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle, professional focus ring used across interactive elements. */
+:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
