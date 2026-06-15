@@ -23,6 +23,9 @@ export function AppHeader() {
             <Link href="/catalog" className="rounded-md px-2.5 py-1.5 text-muted hover:bg-surface-2 hover:text-foreground">
               {t('catalog')}
             </Link>
+            <Link href="/settings" className="rounded-md px-2.5 py-1.5 text-muted hover:bg-surface-2 hover:text-foreground">
+              {t('settings')}
+            </Link>
           </nav>
         </div>
         <LanguageSwitcher />
