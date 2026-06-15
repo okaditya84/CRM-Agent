@@ -17,12 +17,14 @@
     "node": ">=20"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.4.0",
     "clsx": "^2.1.1",
     "googleapis": "^173.0.0",
     "next": "^16.2.9",
     "next-intl": "^4.13.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
+    "react-hook-form": "^7.79.0",
     "tailwind-merge": "^3.6.0",
     "ulid": "^3.0.2",
     "zod": "^4.4.3"

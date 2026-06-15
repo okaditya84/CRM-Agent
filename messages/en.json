@@ -37,5 +37,27 @@
         "body": "Every lead, note, and status update is shared. A salesperson can take over any chat from the bot at any moment."
       }
     }
+  },
+  "form": {
+    "save": "Save lead",
+    "saving": "Saving…",
+    "selectPlaceholder": "Select…",
+    "fixErrors": "Please fix the highlighted fields.",
+    "optional": "optional"
+  },
+  "leads": {
+    "newTitle": "Add a lead",
+    "newSubtitle": "Capture a customer in seconds. Type or dictate a note and let AI structure it, or fill the form directly.",
+    "ai": {
+      "label": "Quick add with AI",
+      "placeholder": "Paste or dictate a note in any language — e.g. \"Ramesh from Surat, wholesaler, wants saree and embroidery designs, 98765 43210\"",
+      "button": "Structure with AI",
+      "loading": "Structuring…",
+      "notConfigured": "Add an LLM key in Settings to enable AI structuring.",
+      "review": "AI filled the form — review the highlighted fields before saving."
+    },
+    "savedTitle": "Lead saved",
+    "addAnother": "Add another",
+    "nextStep": "Next: pick photos to send on WhatsApp (coming soon)."
   }
 }
